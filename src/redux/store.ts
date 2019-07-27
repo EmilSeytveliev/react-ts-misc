@@ -1,4 +1,5 @@
 import { createStore, combineReducers, Action, Reducer, Store } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { userReducer } from "./user-settings/reducer";
 import { ApplicationState } from ".";
 
@@ -9,7 +10,7 @@ const configureStore = (): Store<ApplicationState> => {
         userSettings: userReducer
     })
 
-    const store = createStore<ApplicationState, Action<any>, {}, {}>(rootReducer);
+    const store = createStore<ApplicationState, Action<any>, {}, {}>(rootReducer, composeWithDevTools());
     return store
 }
 

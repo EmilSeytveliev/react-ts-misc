@@ -4,18 +4,17 @@ import { UserSettings } from '../redux/user-settings';
 import { connect } from 'react-redux';
 import { setOnline } from '../redux/user-settings/actions';
 
-interface AppSettingsProps {
+interface ConnectedToReduxProps {
     userSettings: UserSettings,
     setOnline: Function
 }
 
-const AppSettings = (props: AppSettingsProps) => {
-    return <React.Fragment>
-        <div>
-            <div>AppSettings: Is online: {props.userSettings.isOnline.toString()}</div>
-            <button onClick={() => props.setOnline(!props.userSettings.isOnline)}>Set Online</button>
+const ConnectedToRedux = (props: ConnectedToReduxProps) => {
+    return <div className="separate-component">
+            <div>ConnectedToRedux</div>
+            <div>Is online: {props.userSettings.isOnline.toString()}</div>
+            <button onClick={() => props.setOnline(!props.userSettings.isOnline)}>Change Online Status</button>
         </div>
-    </React.Fragment>
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
@@ -28,4 +27,4 @@ const mapDispatchToProps = (dispatch: any) => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppSettings)
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectedToRedux)
